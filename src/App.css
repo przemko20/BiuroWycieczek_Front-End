@@ -1,32 +1,266 @@
-.App {
+
+div{
   text-align: center;
+  
+}
+h1{
+  
+  padding: 1%;
+  font-family: 'Nunito', sans-serif;
+
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+/*********************** <Main/> ************************/
+
+.Main{
+  padding: 0vw;
+  width: inherit;
+  
+  height: inherit;
+}
+.LitleMain{
+  width: inherit;
+  height: 60vh;
+  display: flex;
+  flex-direction: row;
+  
+  
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+.Logo{
+  width: 80vw;
+  padding: 5% 5% 5% 0%;
+  background-color:  rgb(47, 83, 44);
+}
+.LogoContent{
+  width: 60vw;
+  opacity: 0.3;
+}
+
+
+.NavBar{
+  width: inherit;
+  height: 10vh;
+  background-color: rgb(96, 146, 139);
+  display: flex;
+  flex-direction: row;
+  align-content: stretch;
+  
+  
+}
+.MenuItem{
+  border-right: 0.1vw solid black;
+  width:15.75vw;
+  font-size: 1.5vmin;
+  line-height: 5vh;
+  
+}
+.SignItem{
+  width: 9.8vw;
+  height: 10vh;
+  border-left: 0.1vw solid black;
+  border-bottom: 0.1vw solid black;
+  font-size: 1.5vmin;
+  line-height: 5vh;
+  
+  text-overflow: clip;
+}
+
+.SignPanel{
+  background-color:  rgb(47, 83, 44);
+  width: 20vw;
+  display: flex;
+  justify-content: flex-start;
+ 
+  
+}
+.Header{
+  background-color: darkorange;
+  width: inherit;
+}
+
+
+/******************* LastMinute *************/
+
+.LastMinute{
+  background-color: darkseagreen;
+  width: inherit;
+  height: 70vh;
+  clear: both;
+  overflow: visible;
+  direction: flex;
+  flex-direction: column;
+  
+  
+}
+.LastTrips{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  
+
+}
+
+.Trip{
+  width: 20vw;
+  height: 50vh;
+  border: 0.1vw solid black;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  
+}
+
+.Info{
+  background-color:green;
+  background-image: url('http://niedziela.pl/gifs/portaln/624x400/1480504312.jpg');
+  width: inherit;
+  height: 22vh;
+  display: flex;
+  flex-direction: column;
+  
+}
+.Info ul{
+  padding: 5% 10% 0% 5%;
+  list-style-type: none;
+  
+  
+  
+}
+.Info li{
+  text-align: left;
+  padding: 5%;
+  opacity: none;
+  color: black;
+  font-size: 2.5vmin;
+  background-color: rgba(255, 255, 255, 0.514);
+  font-family: 'Nunito', sans-serif;
+
+  
+}
+
+.Level{
+  width:20vw;
+  height: 6vh;
+  
+  
+}
+.LevelSquare{
+  float: right;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  border: 0.3vmin  solid  black;
+  border-right: 0.1vmin solid black;;
+  width: 3vw;
+  height: inherit;
+  margin-top: -5vmin;
+  font-size: 2.5vmin;
+  
+}
+
+.TripName{
+  background-image: linear-gradient(to bottom right,  rgb(66, 75, 62),rgb(199, 207, 197));
+  width: 13vw;
+  height: 6vh;
+  margin-top: -1.5vh;
+  margin-left: 0.5vw;
+  float: left;
+  display: flex;
+  align-items: center;   
+  justify-content: left;
+  padding-left: 5% ;
+  font-size:4vmin;
+ 
+  /*font-family: 'Patrick Hand', cursive;*/
+}
+.Type{
+  float: left;
+  display: flex;
+  align-items: center;   
+  justify-content: center;
+  font-size: 2.5vmin;
+  width: 5.1vw;
+  height: 4.3vh;
+}
+.DescText{
+  clear: both;
+  padding: 2% 4% 0% 5% ;
+  font-size:2.2vmin;
+  height: 18vh;
+  overflow: hidden;
+  text-align: left;
+
+  font-family: 'Patrick Hand', cursive;
+}
+
+
+p{
+  margin: 0vmin;
+}
+.DarkGrey{
+  color:black;
+}
+.Grey{
+  opacity: 0.6;
+}
+.LightGrey{
+  opacity:0.3;
+}
+.White{
+  opacity: 0.1;
+}
+
+
+.SeeMore{
+  position: relative;
+  bottom: -0vmin;
+  background-color: rgb(87, 122, 87);
+  font-size: 2.0vmin;
+  
+}
+
+
+
+.AboutUs{
+  padding: 2% 6% 6% 6%;
+}
+
+.UnFold{
+  color:black;
+  margin-top: 1%;
+  height: 2vh;
+  line-height: 1vh;
+  background-color: rgba(180, 180, 180, 0.301);
+}
+
+.Galery{
+  height: 80vh;
+  background-size: inherit;
+  background-image:  url('https://www.rei.com/adventures/assets/adventures/images/trip/core/asia/nua_hero')
+}
+
+.Arrows{
+  display: flex;
+  justify-content: space-between;
+  padding: 5% 10% 5% 10%;
+  font-size: 10vmin;
+  color:grey;
+}
+.Dots{
+  display: flex;
+  flex-direction: row;
+  justify-content:  center;
+  position: relative;
+  top:15vh;
+}
+.Dots i{
+  margin: 0.5%;
+}
+
+.Footer{
+  height: 30vh;
+  background-color: rgb(56, 66, 47);
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  padding: 5%;
 }
