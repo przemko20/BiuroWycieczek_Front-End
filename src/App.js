@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 
 import {
@@ -17,9 +19,12 @@ class Main extends Component {
         <div className="NavBar">
           <Link to="/"><MenuItem content="O nas"/></Link>
           <Link to="/trips/Szwajcaria"><MenuItem content="Oferta"/></Link>
-          <MenuItem content="Galeria"/>
-          <MenuItem content="Informacje"/>
-          <MenuItem content="Blog"/>
+          <Link to="/galery"><MenuItem content="Galeria"/></Link>
+          <Link to="/infos"><MenuItem content="Informacje"/></Link>
+          <Link to="/blog"><MenuItem content="Blog"/></Link>
+          
+          
+          
         </div>
       </Router>
         <div className="LitleMain">
@@ -225,7 +230,40 @@ class Trips extends Component{
   render(){
     return(
       <div className="Trips">
-        <div className="Filtry">Filtry</div>
+        <div className="Filtry">
+          <input type="text" value="Nazwa wycieczki"></input>
+          <DatePicker/>
+          <DatePicker/>
+          <select>
+            <option>I</option>
+            <option>II</option>
+            <option>III</option>
+          </select>
+          <select>
+            <option>MTB</option>
+            <option>Trek</option>
+            <option>Stac</option>
+          </select>
+          <p>Cena:</p>
+          <div className="CheckBox">
+            
+            <label><input type="checkbox"></input>do 3 tys.</label>
+            <label><input type="checkbox"></input>do 5 tys.</label>
+            <label><input type="checkbox"></input>do 8 tys.</label>
+            <label><input type="checkbox"></input>do 12 tys.</label>
+          </div>
+          <select>
+            <option>Sort</option>
+            <option>Level</option>
+            <option>Cena</option>
+            <option>Data</option>
+            <option>A-Z</option>
+            
+            
+          </select>
+
+        </div>
+        <div className="TripsContent">
         <Trip
             dataStart="01.04"
             dataEnd="15.04.2019"
@@ -270,10 +308,43 @@ class Trips extends Component{
             desc3="Duis aute irn reprehenderit ivoluptate velitn"
             type="Trek"
           />
+        </div>
       </div>
+    )
+    
+  }
+  /*
+  componentDidMount() {
+    fetch('')
+      .then(response => response.json())
+      .then(data => console.log(data));
+  }
+  */
+  
+}
+
+class BlogPage extends Component{
+  render(){
+    return(
+      <div className="BlogPage">Strona w serwisie</div>
     )
   }
 }
+class GaleryPage extends Component{
+  render(){
+    return(
+      <div className="GaleryPage">Strona w serwisie</div>
+    )
+  }
+}
+class InfosPage extends Component{
+  render(){
+    return(
+      <div className="InfosPage">Strona w serwisie</div>
+    )
+  }
+}
+
 
 
 class App extends Component{
@@ -284,7 +355,13 @@ class App extends Component{
         <Router>
           <div className="Router">
             <Route path="/trips/:namee" component={Trips} />
-            <Route exact path="/" component={Home} />    
+            <Route exact path="/" component={Home} />  
+            <Route exact path="/galery" component={GaleryPage} />
+            <Route exact path="/blog" component={BlogPage} />
+            <Route exact path="/infos" component={InfosPage} />    
+
+
+
           </div>
         </Router>
       <Footer/>
@@ -292,6 +369,33 @@ class App extends Component{
     );
   }
 }
+
+class DatePickerEx extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      startDate: new Date()
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+ 
+  handleChange(date) {
+    this.setState({
+      startDate: date
+    });
+  }
+ 
+  render() {
+    return (
+      <DatePicker
+        selected={this.state.startDate}
+        onChange={this.handleChange}
+      />
+    );
+  }
+}
+
+
 
 
 export default App;
