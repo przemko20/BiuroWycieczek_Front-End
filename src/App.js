@@ -18,7 +18,7 @@ class Main extends Component {
       <Router>
         <div className="NavBar">
           <Link to="/"><MenuItem content="O nas"/></Link>
-          <Link to="/trips/Szwajcaria"><MenuItem content="Oferta"/></Link>
+          <Link to="/trips/"><MenuItem content="Oferta"/></Link>
           <Link to="/galery"><MenuItem content="Galeria"/></Link>
           <Link to="/infos"><MenuItem content="Informacje"/></Link>
           <Link to="/blog"><MenuItem content="Blog"/></Link>
@@ -43,9 +43,11 @@ class Main extends Component {
 }
 
 class MenuItem extends Component{
+
+
     render(){
       return(
-        <div className="MenuItem">
+        <div className="MenuItem" >
           <h1>{this.props.content}</h1>
         </div>
       );
@@ -61,68 +63,38 @@ class SignItem extends Component{
   }
 }
 
-class LastMinute extends Component {
+class TripContainer extends Component {
   render(){
     return(
-      <div className="LastMinute">
+      <div className="TripContainer">
         <h1>{this.props.name}</h1>
-        <div className="LastTrips">
-          <Trip
-            dataStart="01.04"
-            dataEnd="15.04.2019"
-            prise="6583"
-            level="B"
-            name={this.props.namee}
-            desc1="Lorem ipsum dolor sit sed do eiusmeselit se cillum doloreod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi" 
-            desc2="ut aliquip ex ea commodo con dolorsequaure it. "
-            desc3="Duis aute irn reprehenderit ivoluptate velitn"
-            type="MTB"
-
-          />
-          <Trip
-            dataStart="01.02"
-            dataEnd="3.05.2019"
-            prise="2023"
-            level="C"
-            name="Toskania"
-            desc1="Lorem ipsum dolor sit sed do eiusmeselit se cillum doloreod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi" 
-            desc2="ut aliquip ex ea commodo con dolorsequaure it. "
-            desc3="Duis aute irn reprehenderit ivoluptate velitn"
-            type="MTB"
-            />
-          <Trip
-            dataStart="01.04"
-            dataEnd="14.07.2015"
-            prise="5383"
-            level="D"
-            name="Islandia"
-            desc1="Lorem ipsum dolor sit sed do eiusmeselit se cillum doloreod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi" 
-            desc2="ut aliquip ex ea commodo con dolorsequaure it. "
-            desc3="Duis aute irn reprehenderit ivoluptate velitn"
-            type="Stac"
-            />
-          <Trip
-            dataStart="09.04"
-            dataEnd="27.02.2020"
-            prise="2100"
-            level="A"
-            name="Prowansja"
-            desc1="Lorem ipsum dolor sit sed do eiusmeselit se cillum doloreod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi" 
-            desc2="ut aliquip ex ea commodo con dolorsequaure it. "
-            desc3="Duis aute irn reprehenderit ivoluptate velitn"
-            type="Trek"
-          />
-        </div>
+          <Trips/>
+        
       </div>
 
 
     );
   }
 }
+
 class Trip extends Component{
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      nazwa:"Dupa"
+    }
+  }
+
+  handleClick(e){
+   alert(this.state.name)
+    
+  }
+
+
   render(){
     return(
-      <div className="Trip">
+      <div className="Trip" onClick={this.handleClick.bind(this)}>
         <div className="Info">
           <ul>
             <li>
@@ -142,7 +114,7 @@ class Trip extends Component{
         </div>
         <div className="Desc">
           <div className="TripName">{this.props.name}</div>
-          <div className="Type">{"   "}   {this.props.type}</div>
+          <div className="Type">{"   "}{this.props.type}</div>
           <div className="DescText">
             <p className="DarkGrey">{this.props.desc1}</p>
             <p className="Grey">{this.props.desc2}</p>
@@ -218,109 +190,118 @@ class Home extends Component{
   render(){
     return(
       <div className="Home">
-        <LastMinute name="LastMinute"/>
+        <TripContainer name="LastMinute"/>
         <AboutUs/>
-        <LastMinute name="New Trips" namee="Jordania"/>
+        <TripContainer name="New Trips" />
         <Galery/>
       </div>
     );
   }
 }
 class Trips extends Component{
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      tripsFetched: [],
+    }
+  }
+
+   componentDidMount(){
+    fetch('http://127.0.0.1:5000/trips')
+    .then(response => response.json())
+    .then(data => {  
+      this.setState({tripsFetched:data});
+      
+      //console.log(this.state.tripsFetched);
+    });
+   }
+
+   
+  render(){
+    let trips = [];
+    trips = this.state.tripsFetched;
+    
+    
+    console.log(trips);
+        return(
+          <div className="Trips">
+            <div className="Filtry">
+              <input type="text" value="Nazwa wycieczki"></input>
+              <DatePicker/>
+              <DatePicker/>
+              <select>
+                <option>I</option>
+                <option>II</option>
+                <option>III</option>
+              </select>
+              <select>
+                <option>MTB</option>
+                <option>Trek</option>
+                <option>Stac</option>
+              </select>
+              <p>Cena:</p>
+              <div className="CheckBox">
+                
+                <label><input type="checkbox"></input>do 3 tys.</label>
+                <label><input type="checkbox"></input>do 5 tys.</label>
+                <label><input type="checkbox"></input>do 8 tys.</label>
+                <label><input type="checkbox"></input>do 12 tys.</label>
+              </div>
+              <select>
+                <option>Sort</option>
+                <option>Level</option>
+                <option>Cena</option>
+                <option>Data</option>
+                <option>A-Z</option>
+                
+                
+              </select>
+    
+            </div>
+            <Router>
+            <div className="TripsContent">
+            
+            {trips.map(trip => (
+              <Link to="/trip">
+              <Trip
+                 
+                name={trip.name}
+                level={trip.level}
+                prise={trip.prise}
+                type={trip.type}
+                dataStart="14.06.2020"
+                dataEnd="28.06.2020"
+                desc1="Lorem ipsum dolor sit sed do eiusmeselit se cillum doloreod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi" 
+                desc2="ut aliquip ex ea commodo con dolorsequaure it. "
+                desc3="Duis aute irn reprehenderit ivoluptate velitn"
+                
+                />
+                </Link>
+            ))}
+            
+            </div>
+            </Router>
+          </div>
+        )
+        
+      
+  }
+
+}
+
+class TripContent extends Component{
+  
+
+
   render(){
     return(
-      <div className="Trips">
-        <div className="Filtry">
-          <input type="text" value="Nazwa wycieczki"></input>
-          <DatePicker/>
-          <DatePicker/>
-          <select>
-            <option>I</option>
-            <option>II</option>
-            <option>III</option>
-          </select>
-          <select>
-            <option>MTB</option>
-            <option>Trek</option>
-            <option>Stac</option>
-          </select>
-          <p>Cena:</p>
-          <div className="CheckBox">
-            
-            <label><input type="checkbox"></input>do 3 tys.</label>
-            <label><input type="checkbox"></input>do 5 tys.</label>
-            <label><input type="checkbox"></input>do 8 tys.</label>
-            <label><input type="checkbox"></input>do 12 tys.</label>
-          </div>
-          <select>
-            <option>Sort</option>
-            <option>Level</option>
-            <option>Cena</option>
-            <option>Data</option>
-            <option>A-Z</option>
-            
-            
-          </select>
-
-        </div>
-        <div className="TripsContent">
-        <Trip
-            dataStart="01.04"
-            dataEnd="15.04.2019"
-            prise="6583"
-            level="B"
-            name={this.props.match.params.namee}
-            desc1="Lorem ipsum dolor sit sed do eiusmeselit se cillum doloreod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi" 
-            desc2="ut aliquip ex ea commodo con dolorsequaure it. "
-            desc3="Duis aute irn reprehenderit ivoluptate velitn"
-            type="MTB"
-          />
-          <Trip
-            dataStart="01.02"
-            dataEnd="3.05.2019"
-            prise="2023"
-            level="C"
-            name="Toskania"
-            desc1="Lorem ipsum dolor sit sed do eiusmeselit se cillum doloreod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi" 
-            desc2="ut aliquip ex ea commodo con dolorsequaure it. "
-            desc3="Duis aute irn reprehenderit ivoluptate velitn"
-            type="MTB"
-            />
-          <Trip
-            dataStart="01.04"
-            dataEnd="14.07.2015"
-            prise="5383"
-            level="D"
-            name="Islandia"
-            desc1="Lorem ipsum dolor sit sed do eiusmeselit se cillum doloreod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi" 
-            desc2="ut aliquip ex ea commodo con dolorsequaure it. "
-            desc3="Duis aute irn reprehenderit ivoluptate velitn"
-            type="Stac"
-            />
-          <Trip
-            dataStart="09.04"
-            dataEnd="27.02.2020"
-            prise="2100"
-            level="A"
-            name="Prowansja"
-            desc1="Lorem ipsum dolor sit sed do eiusmeselit se cillum doloreod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi" 
-            desc2="ut aliquip ex ea commodo con dolorsequaure it. "
-            desc3="Duis aute irn reprehenderit ivoluptate velitn"
-            type="Trek"
-          />
-        </div>
+      <div className="TripContent">
+        Strona ukaże się wkrótce
       </div>
     )
-    
+
   }
-  /*
-  componentDidMount() {
-    fetch('')
-      .then(response => response.json())
-      .then(data => console.log(data));
-  }
-  */
-  
 }
 
 class BlogPage extends Component{
@@ -354,7 +335,8 @@ class App extends Component{
        <Main/>
         <Router>
           <div className="Router">
-            <Route path="/trips/:namee" component={Trips} />
+            <Route path="/trips/" component={Trips} />
+            <Route path="/trip" component={TripContent} />
             <Route exact path="/" component={Home} />  
             <Route exact path="/galery" component={GaleryPage} />
             <Route exact path="/blog" component={BlogPage} />

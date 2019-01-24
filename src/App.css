@@ -34,37 +34,43 @@ h1{
   background-color:  rgb(47, 83, 44);
 }
 .LogoContent{
-  width: 60vw;
+  width: 900px;
   opacity: 0.3;
 }
 
 
 .NavBar{
   width: inherit;
-  height: 10vh;
+  max-width: 100vw;
+  height: auto;
   background-color: rgb(96, 146, 139);
   display: flex;
   flex-direction: row;
   align-content: stretch;
+  justify-content: center;
   
   
 }
+
+
+
+
 .MenuItem{
-  border-right: 0.1vw solid black;
-  width:15.75vw;
-  font-size: 1.5vmin;
+  border-left: 0.1vw solid black;
+  width:16em;
+  max-width: 19vw;
+  font-size: 15px;
   line-height: 5vh;
   
 }
 .SignItem{
-  width: 9.8vw;
-  height: 10vh;
+  width:  150px;
+  height: 72px;
   border-left: 0.1vw solid black;
   border-bottom: 0.1vw solid black;
-  font-size: 1.5vmin;
+  font-size: 10px;
   line-height: 5vh;
   
-  text-overflow: clip;
 }
 
 .SignPanel{
@@ -72,6 +78,9 @@ h1{
   width: 20vw;
   display: flex;
   justify-content: flex-start;
+  flex-direction: row;
+  
+  
  
   
 }
@@ -83,10 +92,10 @@ h1{
 
 /******************* LastMinute *************/
 
-.LastMinute{
+.TripContainer{
   background-color: darkseagreen;
   width: inherit;
-  height: 70vh;
+  height: auto;
   clear: both;
   overflow: visible;
   direction: flex;
@@ -96,18 +105,19 @@ h1{
 }
 .LastTrips{
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
   
 
 }
 
 .Trip{
-  width: 20vw;
-  height: 50vh;
+  width: 310px;
+  height: 360px;
   border: 0.1vw solid black;
   display: flex;
   flex-direction: column;
+  margin:20px;
   
 }
 
@@ -115,13 +125,13 @@ h1{
   background-color:green;
   background-image: url('http://niedziela.pl/gifs/portaln/624x400/1480504312.jpg');
   width: inherit;
-  height: 22vh;
+  height: 160px;
   display: flex;
   flex-direction: column;
   
 }
 .Info ul{
-  padding: 5% 10% 0% 5%;
+  padding: 20px 40px 0px 20px;
   list-style-type: none;
   
   
@@ -129,10 +139,10 @@ h1{
 }
 .Info li{
   text-align: left;
-  padding: 5%;
+  padding: 10px;
   opacity: none;
   color: black;
-  font-size: 2.5vmin;
+  font-size: 16px;
   background-color: rgba(255, 255, 255, 0.514);
   font-family: 'Nunito', sans-serif;
 
@@ -140,8 +150,8 @@ h1{
 }
 
 .Level{
-  width:20vw;
-  height: 6vh;
+  width:310px;
+  height: 43px;
   
   
 }
@@ -150,27 +160,27 @@ h1{
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 0.3vmin  solid  black;
+  border: 2px  solid  black;
   border-right: 0.1vmin solid black;;
-  width: 3vw;
+  width: 46px;
   height: inherit;
-  margin-top: -5vmin;
-  font-size: 2.5vmin;
+  margin-top: -28px;
+  font-size: 18px;
   
 }
 
 .TripName{
   background-image: linear-gradient(to bottom right,  rgb(66, 75, 62),rgb(199, 207, 197));
-  width: 13vw;
-  height: 6vh;
-  margin-top: -1.5vh;
-  margin-left: 0.5vw;
+  width: 200px;
+  height: 43px;
+  margin-top: -10px;
+  margin-left: 7px;
   float: left;
   display: flex;
   align-items: center;   
   justify-content: left;
-  padding-left: 5% ;
-  font-size:4vmin;
+  padding-left: 10px ;
+  font-size:27px;
  
   /*font-family: 'Patrick Hand', cursive;*/
 }
@@ -179,15 +189,15 @@ h1{
   display: flex;
   align-items: center;   
   justify-content: center;
-  font-size: 2.5vmin;
-  width: 5.1vw;
-  height: 4.3vh;
+  font-size: 20px;
+  width: 78px;
+  height: 36px;
 }
 .DescText{
   clear: both;
-  padding: 2% 4% 0% 5% ;
-  font-size:2.2vmin;
-  height: 18vh;
+  padding: 5px 10px 0px 12px; ;
+  font: size 15px;
+  height: 130px;
   overflow: hidden;
   text-align: left;
 
@@ -214,9 +224,9 @@ p{
 
 .SeeMore{
   position: relative;
-  bottom: -0vmin;
+  bottom: 0px;
   background-color: rgb(87, 122, 87);
-  font-size: 2.0vmin;
+  font-size: 12px;
   
 }
 .Trips{
@@ -226,7 +236,7 @@ p{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   padding: 2%;
 }
 
@@ -236,6 +246,7 @@ p{
   display: flex;
   flex-direction:row;
   justify-content: center;
+  max-width: 100vw;
   
   
 
@@ -249,7 +260,8 @@ p{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 15vw;
+  width: 200px;
+  height: 2em;
 }
 
 
@@ -293,7 +305,7 @@ p{
 }
 
 .Footer{
-  height: 30vh;
+  height: auto;
   background-color: rgb(56, 66, 47);
   color: white;
   padding: 5%;
