@@ -228,16 +228,14 @@ class Trips extends Component{
     });
    }
 
-   componentDidUpdate(){
-    console.log(this.state.value)
-   }
 
    handleChange = (event) => {
-    this.setState({ 
-      //value: event.target.value,
-      
+
+    fetch('http://127.0.0.1:5000/trips/?type=' + event.target.value)
+    .then(response => response.json())
+    .then(data => {  
+      this.setState({tripsFetched:data})
     })
-    //console.log(this.state.filters)
   }
   
 
@@ -252,9 +250,41 @@ class Trips extends Component{
     
         return(
           <div className="Trips">
-          <Filtry
-            onChange={this.handleChange} 
-          />
+            <div className="Filtry">
+              <input type="text" value="Nazwa wycieczki"></input>
+              <DatePicker/>
+              <DatePicker/>
+              <select>
+                <option>Level</option>
+                <option>I</option>
+                <option>II</option>
+                <option>III</option>
+              </select>
+              <select id="typ"  onChange={this.handleChange}>
+                <option value="Typ">Typ</option>
+                <option value="MTB">MTB</option>
+                <option value="TREK">Trek</option>
+                <option value="STAC">Stac</option>
+              </select>
+              <p>Cena:</p>
+              <div className="CheckBox">
+                
+                <label><input type="checkbox"></input>do 3 tys.</label>
+                <label><input type="checkbox"></input>do 5 tys.</label>
+                <label><input type="checkbox"></input>do 8 tys.</label>
+                <label><input type="checkbox"></input>do 12 tys.</label>
+              </div>
+              <select>
+                <option>Sort</option>
+                <option>Level</option>
+                <option>Cena</option>
+                <option>Data</option>
+                <option>A-Z</option>
+                
+                
+              </select>
+    
+            </div>
             <Router>
             <div className="TripsContent">
             
@@ -283,68 +313,6 @@ class Trips extends Component{
   }
 }
 
-class Filtry extends Component{
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: null
-    }
-  }
-  
-
-  handleChange = (event) => {
-    this.setState({ 
-      value: event.target.value,
-    })
-  }
-  
-  componentDidUpdate(){
-    console.log(this.state.value)
-  }
-
- 
-
-  render(){
-    return(
-              <div className="Filtry">
-              <input type="text" value="Nazwa wycieczki"></input>
-              <DatePicker/>
-              <DatePicker/>
-              <select>
-                <option>Level</option>
-                <option>I</option>
-                <option>II</option>
-                <option>III</option>
-              </select>
-              <select id="typ"  onChange={this.handleChange}>
-                <option value="Typ">Typ</option>
-                <option value="MTB">MTB</option>
-                <option value="Trek">Trek</option>
-                <option value="Stac">Stac</option>
-              </select>
-              <p>Cena:</p>
-              <div className="CheckBox">
-                
-                <label><input type="checkbox"></input>do 3 tys.</label>
-                <label><input type="checkbox"></input>do 5 tys.</label>
-                <label><input type="checkbox"></input>do 8 tys.</label>
-                <label><input type="checkbox"></input>do 12 tys.</label>
-              </div>
-              <select>
-                <option>Sort</option>
-                <option>Level</option>
-                <option>Cena</option>
-                <option>Data</option>
-                <option>A-Z</option>
-                
-                
-              </select>
-    
-            </div>
-    )
-  }
-}
 
 class TripContent extends Component{
 
