@@ -18,9 +18,9 @@ class Main extends Component {
       <Router>
         <div className="NavBar">
           <Link to="/"><MenuItem content="O nas"/></Link>
-          <Link to="/trips/"><MenuItem content="Oferta"/></Link>
+          <Link to="/trips/"><MenuItem content="Oferta" /></Link>
           <Link to="/galery"><MenuItem content="Galeria"/></Link>
-          <Link to="/infos"><MenuItem content="Informacje"/></Link>
+          <Link to="/infos"><MenuIteml content="Informacje"/></Link>
           <Link to="/blog"><MenuItem content="Blog"/></Link>
           
           
@@ -43,8 +43,6 @@ class Main extends Component {
 }
 
 class MenuItem extends Component{
-
-
     render(){
       return(
         <div className="MenuItem" >
@@ -53,6 +51,18 @@ class MenuItem extends Component{
       );
     }
 }
+
+
+class MenuIteml extends Component{
+  render(){
+    return(
+      <div className="MenuItem"  >
+        <h1>{this.props.content}</h1>
+      </div>
+    );
+  }
+}
+
 class SignItem extends Component{
   render(){
     return(
@@ -204,6 +214,7 @@ class Trips extends Component{
     super(props);
     this.state = {
       tripsFetched: [],
+      value: null
     }
   }
 
@@ -211,11 +222,25 @@ class Trips extends Component{
     fetch('http://127.0.0.1:5000/trips')
     .then(response => response.json())
     .then(data => {  
-      this.setState({tripsFetched:data});
-      
+      this.setState({tripsFetched:data})
       //console.log(this.state.tripsFetched);
+      
     });
    }
+
+   componentDidUpdate(){
+    console.log(this.state.value)
+   }
+
+   handleChange = (event) => {
+    this.setState({ 
+      //value: event.target.value,
+      
+    })
+    //console.log(this.state.filters)
+  }
+  
+
 
    
   render(){
@@ -223,42 +248,13 @@ class Trips extends Component{
     trips = this.state.tripsFetched;
     
     
-    console.log(trips);
+    //console.log(trips);
+    
         return(
           <div className="Trips">
-            <div className="Filtry">
-              <input type="text" value="Nazwa wycieczki"></input>
-              <DatePicker/>
-              <DatePicker/>
-              <select>
-                <option>I</option>
-                <option>II</option>
-                <option>III</option>
-              </select>
-              <select>
-                <option>MTB</option>
-                <option>Trek</option>
-                <option>Stac</option>
-              </select>
-              <p>Cena:</p>
-              <div className="CheckBox">
-                
-                <label><input type="checkbox"></input>do 3 tys.</label>
-                <label><input type="checkbox"></input>do 5 tys.</label>
-                <label><input type="checkbox"></input>do 8 tys.</label>
-                <label><input type="checkbox"></input>do 12 tys.</label>
-              </div>
-              <select>
-                <option>Sort</option>
-                <option>Level</option>
-                <option>Cena</option>
-                <option>Data</option>
-                <option>A-Z</option>
-                
-                
-              </select>
-    
-            </div>
+          <Filtry
+            onChange={this.handleChange} 
+          />
             <Router>
             <div className="TripsContent">
             
@@ -284,20 +280,88 @@ class Trips extends Component{
             </Router>
           </div>
         )
-        
-      
+  }
+}
+
+class Filtry extends Component{
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: null
+    }
+  }
+  
+
+  handleChange = (event) => {
+    this.setState({ 
+      value: event.target.value,
+    })
+  }
+  
+  componentDidUpdate(){
+    console.log(this.state.value)
   }
 
+ 
+
+  render(){
+    return(
+              <div className="Filtry">
+              <input type="text" value="Nazwa wycieczki"></input>
+              <DatePicker/>
+              <DatePicker/>
+              <select>
+                <option>Level</option>
+                <option>I</option>
+                <option>II</option>
+                <option>III</option>
+              </select>
+              <select id="typ"  onChange={this.handleChange}>
+                <option value="Typ">Typ</option>
+                <option value="MTB">MTB</option>
+                <option value="Trek">Trek</option>
+                <option value="Stac">Stac</option>
+              </select>
+              <p>Cena:</p>
+              <div className="CheckBox">
+                
+                <label><input type="checkbox"></input>do 3 tys.</label>
+                <label><input type="checkbox"></input>do 5 tys.</label>
+                <label><input type="checkbox"></input>do 8 tys.</label>
+                <label><input type="checkbox"></input>do 12 tys.</label>
+              </div>
+              <select>
+                <option>Sort</option>
+                <option>Level</option>
+                <option>Cena</option>
+                <option>Data</option>
+                <option>A-Z</option>
+                
+                
+              </select>
+    
+            </div>
+    )
+  }
 }
 
 class TripContent extends Component{
-  
 
 
   render(){
     return(
       <div className="TripContent">
-        Strona ukaże się wkrótce
+        <div className="MenuBar">
+          <MenuItem content="Opis"/>
+          <MenuItem content="Program"/>
+          <MenuItem content="Informacje"/>
+          <MenuItem content="Cena"/>
+          <MenuItem content="Trasa"/>
+          <MenuItem content="Galeria"/>
+         
+
+        </div>
       </div>
     )
 

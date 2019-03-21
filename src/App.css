@@ -27,7 +27,6 @@ h1{
   
 }
 
-
 .Logo{
   width: 80vw;
   padding: 5% 5% 5% 0%;
@@ -36,6 +35,9 @@ h1{
 .LogoContent{
   width: 900px;
   opacity: 0.3;
+}
+img{
+  width: 900px;
 }
 
 
@@ -54,15 +56,28 @@ h1{
 
 
 
-
 .MenuItem{
   border-left: 0.1vw solid black;
   width:16em;
   max-width: 19vw;
   font-size: 15px;
   line-height: 5vh;
+  text-overflow: string;
+  flex-grow: 3;
   
 }
+
+.MenuIteml{
+  border-left: 0.1vw solid black;
+  width:16em;
+  max-width: 19vw;
+  font-size: 15px;
+  line-height: 5vh;
+  text-overflow: string;
+  flex-grow: 1;
+  
+}
+
 .SignItem{
   width:  150px;
   height: 72px;
@@ -164,7 +179,7 @@ h1{
   border-right: 0.1vmin solid black;;
   width: 46px;
   height: inherit;
-  margin-top: -28px;
+  margin-top: -22px;
   font-size: 18px;
   
 }
@@ -246,14 +261,15 @@ p{
   display: flex;
   flex-direction:row;
   justify-content: center;
+  /*
   max-width: 100vw;
   
-  
+  */
 
 }
 .Filtry > *{
   margin-left:2vw;
-  
+  border-radius: 10%;
   
 }
 .CheckBox{
@@ -262,6 +278,22 @@ p{
   flex-wrap: wrap;
   width: 200px;
   height: 2em;
+}
+
+input{
+  width:100px;
+}
+
+.MenuBar{
+  width: inherit;
+  
+  height: auto;
+  background-color: rgb(146, 139, 96);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  
+  
 }
 
 
@@ -285,6 +317,7 @@ p{
   background-size: inherit;
   background-image:  url('https://www.rei.com/adventures/assets/adventures/images/trip/core/asia/nua_hero')
 }
+
 
 .Arrows{
   display: flex;
