@@ -251,7 +251,7 @@ class Trips extends Component{
         return(
           <div className="Trips">
             <div className="Filtry">
-              <input type="text" value="Nazwa wycieczki"></input>
+              <input type="text" value="Nazwa"></input>
               <DatePicker/>
               <DatePicker/>
               <select>
